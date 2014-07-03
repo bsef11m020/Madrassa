@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Assignments";
+}
+
+<style>
+    body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+table
+{
+    margin-left:50px;
+    border-collapse: separate;
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content: counter(Serial); /* Display the counter */
+}
+</style>
+<div class="content-header">
+    
+                <h1>
+                    @*<a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>*@
+                    All Assignments
+                </h1>
+                 
+                <table class="table table-striped">
+                    
+                    <tr> 
+                        <th>#</th>  
+                        <th>Name</th>       
+                        <th>click here to download</th>
+                    </tr>
+      
+                    @foreach (var s in Model)
+                    {
+                        
+                    <tr> 
+                        <td></td>  
+                        <td>@s.name</td>          
+                        <td><a href=@s.path>@s.path</a></td>
+                    </tr>
+                    
+                         
+                    } 
+                    
+                </table>
+    
+
+            </div>

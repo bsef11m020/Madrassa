@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SIGN-UP</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/_references.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/cbpAnimatedHeader.js"></script>
+    <script src="~/Scripts/cbpAnimatedHeader.min.js"></script>
+    <script src="~/Scripts/classie.js"></script>
+    <script src="~/Scripts/freelancer.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.intellisense.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.intellisense.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/knockout-2.1.0.debug.js"></script>
+    <script src="~/Scripts/knockout-2.1.0.js"></script>
+    <script src="~/Scripts/knockout-2.2.0.debug.js"></script>
+    <script src="~/Scripts/knockout-2.2.0.js"></script>
+    <script src="~/Scripts/modernizr-2.5.3.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script>
+
+        $('#checkUser').val("Hi All");
+        $(document).ready(function () {
+
+            $('#un').focusout(function () {
+                var UserName = $('#un').val();
+                if (UserName != "") {
+                    $.getJSON("/Home/CheckUserName?Name=" + UserName, function (data) {
+
+
+                        if (data == true) {
+                            alert("exists");
+                            $('#checkUser').text("Username already exists, Try another one");
+                            // $('#checkUser').val("Hi if");
+                        }
+                        else
+                            $('#checkUser').text("Username is available");
+                        // $('#checkUser').val("Hi else");
+
+                    });
+                }
+                // $('#checkUser').text("foc");
+            });
+        });
+
+        </script>
+    @model Madrasa.Models.User
+</head>
+<body>
+    
+    <nav class="navbar navbar-inverse"  role ="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand">MADRASA</a>
+    </div>    
+    </nav>
+
+
+    <div class="row">
+    <div  class="col-lg-3">
+    </div> 
+    <div  class="col-lg-7" >
+    <h2 > WELCOME TO MADRASA !!</h2> 
+    </div>
+    </div>
+    <hr />
+    
+   <br />
+    <div class="col-lg-4"></div>
+    <div class="col-lg-6">
+        @using(Html.BeginForm("Save", "Home", FormMethod.Post))
+          {
+      <table>
+          
+            <tr><td><h4>@Html.LabelFor(x=>x.username,"USERNAME")</h4></td><td>@Html.TextBoxFor(x => x.username, new { id="un", placeholder="", name="n" }) @Html.ValidationMessageFor(x => x.username) 
+                <!--<input type="text" placeholder="" name="n"/>--></td><td><div id="checkUser"></div></td></tr>
+            <tr><td><h4>@Html.LabelFor(x=>x.password,"PASSWORD")</h4></td><td>@Html.TextBoxFor(x => x.password, new { placeholder="", name="p", type="password" }) @Html.ValidationMessageFor(x => x.password)
+                <!--<input type="text" placeholder="" name="p"/>--></td></tr>
+            <tr><td><h4>@Html.LabelFor(x=>x.firstName,"FIRST NAME")</h4></td><td>@Html.TextBoxFor(x => x.firstName, new { placeholder="", name="fn" })
+                </td></tr>
+            <tr><td><h4>@Html.LabelFor(x=>x.lastName,"LAST NAME")</h4></td><td>@Html.TextBoxFor(x => x.lastName, new { placeholder="", name="ln" })</td></tr>
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+    list.Add(new SelectListItem{Text="Student", Value="student"});
+   list.Add(new SelectListItem{Text="Teacher", Value="teacher"});
+    list.Add(new SelectListItem{Text="Teacher's Assistant", Value="ta"});
+}
+            <tr><td><h4>@Html.LabelFor(x=>x.type,"TYPE")</h4></td><td>@Html.DropDownList("type",list)<!--<select name="type" placeholder="">
+                                                <option value="student">Student</option>
+                                                <option value="teacher">Teacher</option>
+                                                <option value="ta">Teacher's Assistant</option>
+                                                    </select>--></td></tr>
+            <tr><td><h4>@Html.LabelFor(x=>x.phoneNo,"PHONE NO.")</h4></td><td>@Html.TextBoxFor(x => x.phoneNo, new { placeholder="", name="c" })
+                
+                </td></tr>
+           
+            <tr><td></td><td> <br /><input type="submit" class="btn btn-primary col-lg-12 " value="SIGN_UP"/></td></tr>
+            
+
+      </table>
+          }  
+        
+      </div>
+   <div class="row"> 
+    </div>
+    
+
+   <footer class="modal-footer">@Html.ActionLink("BACK TO LOGIN", "Login", "Home", new {_class="pull-right btn btn-danger col-lg-12"})<!--<a class="pull-right " href="~/Home/Login"><button class="btn btn-danger col-lg-12 "> <br /> <br /> <br />BACK TO LOGIN </a></button>--></footer>  
+   </body>
+   
+</html>

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "CreateClass";
+}
+@model Madrasa.Models.Class
+<h2>CreateClass</h2>
+
+@using(Html.BeginForm("saveClass", "Teacher", FormMethod.Post))
+          {
+      <table>
+          
+            <tr><td><h4>@Html.LabelFor(x=>x.className,"Class Name")</h4></td><td>@Html.TextBoxFor(x => x.className, new { id="cn", placeholder="", name="c" }) @Html.ValidationMessageFor(x => x.className) 
+                <!--<input type="text" placeholder="" name="n"/>--></td><td><div id="checkUser"></div></td></tr>
+            <tr><td><h4>@Html.LabelFor(x=>x.description,"Description")</h4></td><td>@Html.TextBoxFor(x => x.description, new { id="d", placeholder="", name="p"}) @Html.ValidationMessageFor(x => x.description)
+             <tr><td></td><td> <br /><input type="submit" class="btn btn-primary col-lg-12 " value="Create Class"/></td></tr>
+           
+      </table>
+          }
+

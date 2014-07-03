@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "index";
+}
+<script>
+    $(document).ready(function () {
+
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("active");
+        });
+        $("#assignment").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/TA/Assignments");
+        });
+        $("#quiz").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/TA/Quizzes");
+        });
+        $("#lecture").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/TA/Lectures");
+        });
+        $("#announcement").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/TA/Announcements");
+        });
+        $("#question").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/TA/Questions");
+        });
+
+    });
+    </script>

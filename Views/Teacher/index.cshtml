@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "index";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#signup').hide();
+        $('#login').hide();
+
+        $("#page-content-wrapper").unload();
+        $("#page-content-wrapper").load("/Student/Assignments");
+
+
+        $('.sidebar-nav').append("<li><a href=# id=CreateClass>Create a Class</a></li>");
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("active");
+        });
+        $("#CreateClass").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Teacher/CreateClass");
+        });
+        $("#assignment").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Teacher/Assignments");
+        });
+        $("#quiz").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Teacher/Quizzes");
+        });
+        $("#lecture").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Teacher/Lectures");
+        });
+        $("#announcement").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Teacher/Announcements");
+        });
+        $("#question").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Teacher/Questions");
+        });
+
+    });
+    </script>

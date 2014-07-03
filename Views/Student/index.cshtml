@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "index";
+}
+
+
+<style>
+table,th,td
+{
+border:0px solid black;
+border-collapse:collapse;
+padding:15px;
+}
+</style>
+
+<script>
+    $(document).ready(function () {
+        var cid = @Session["classId"]
+
+
+        
+        $('.dropdown-toggle').click(function () {
+            
+            $.getJSON("/Student/getClasses" , function (data) {
+               // alert("Hello getjson");
+                var classId = [], className = [];
+                $("#dmenu").empty();
+                $.each(data, function (index, item) {
+                    classId[index] = item.classId;
+                    className[index] = item.className;
+                 //   alert("Hello each");
+                    $('#dmenu').append(
+                        $('#dmenu').append("<li><a href=Student/changeClass?cid="+item.classId+">"+item.className + "</a></li>"));
+                        //$('#dmenu').append("<li>" + $('<a></a>').val(item.classId).html(item.className) + "</li>"));
+                });
+                //"<li><a href=/Student/Index?classId=" + classId[index] + ">" + className[index] + "</a></li>");
+            });
+        });
+       
+        
+        
+        $("#page-content-wrapper").unload();
+        $("#page-content-wrapper").load("/Student/Assignments");
+            /*$.getJSON("/Student/getTeacher", function (data) {
+                alert(data.username + "     " + data.phoneNo);
+            });*/
+            
+        $('#drop').show();
+        $('.dropdown-toggle').dropdown()
+
+
+        $('#login').hide();
+        $('#signup').hide();
+        $('#logout').show();
+        //$('#updateProfile').show();
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("active");
+        });
+        $("#about").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Home/About");
+        });
+        $("#assignment").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Student/Assignments");
+        });
+        $("#quiz").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Student/Quizzes");
+        });
+        $("#lecture").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Student/Lectures");
+        });
+        $("#announcement").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Student/Announcements");
+        });
+        $("#question").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Student/Questions");
+        });
+
+        /*$("#sbtn").click(function () {
+            $("#page-content-wrapper").unload();
+            $("#page-content-wrapper").load("/Student/Search");
+        });*/
+        @*$("#yu").keypress(function () {
+                var value = $(this).val();
+                $.getJSON('/User/search?cat=' + value, function (data) {
+                   $('#myTable').empty();
+                    var twit_lk = '../User/SignUp';
+                    var g='';
+                    $.each(data, function (index, item) {
+                          g=g+
+                       '<tr><td><a href="' + twit_lk + '">'+item.Email+'</a></td></tr>'
+                       // alert(item.Email + "ghgh");
+                    });
+                   $(g).appendTo($("#myTable"));
+                                       
+                });
+        
+            *@
+    });
+    </script>
+<!--<div >
+    Search Teacher           <input type="text" id="s1"/> <input type="button" id="b1" value="Search Teacher"/>
+</div>-->

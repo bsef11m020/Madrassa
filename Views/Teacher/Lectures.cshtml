@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Lectures";
+}
+
+<style>
+    body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+tr
+{
+    
+    margin-bottom:30px;
+    border-collapse: separate;
+}
+#tab
+{
+    margin-left:50px;
+    border-collapse: separate;
+}
+
+#tab tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content: counter(Serial); /* Display the counter */
+}
+</style>
+
+<h2>Lectures</h2>
+<div class="col-lg-6">
+<form action="/Teacher/Save?type=Lectures" method="post" enctype="multipart/form-data" >
+    <table id="tab1">
+    <tr>
+        <td>Name: </td>
+        <td><input type="text" id="name" name="name" /></td></tr>
+    <tr>
+        <td>Upload Lecture: </td>
+        <td><input type="file" name="image" class="btn btn-primary" /></td>
+            </tr>
+   
+     
+ 
+    <tr><td></td><td><input type="submit"  class="btn" value="upload" /></td></tr>
+    </table>
+</form>
+</div>
+<div>
+    <table>
+       
+    </table>
+</div>
+
+<div class="content-header">
+    
+                
+                 
+                <table class="table table-striped" id="tab">
+                    
+                    <tr> 
+                        <th>#</th>  
+                        <th>Name</th>       
+                        <th>click here to download</th>
+                    </tr>
+      
+                    @foreach (var s in Model)
+                    {
+                        
+                    <tr> 
+                        <td></td>  
+                        <td>@s.name</td>          
+                        <td><a href=@s.path>@s.path</a></td>
+                    </tr>
+                    
+                         
+                    } 
+                    
+                </table>
+    
+
+            </div>
